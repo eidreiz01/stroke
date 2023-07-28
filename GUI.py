@@ -5,8 +5,8 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 #Load the Model and Scaler
-model = pickle.load(open('./Saved Models/Best_Model_LogReg.pkl', 'rb'))
-scaler = pickle.load(open('./Saved Models/scaler.pkl', 'rb'))
+model = pickle.load(open('Best_Model_LogReg.pkl', 'rb'))
+scaler = pickle.load(open('scaler.pkl', 'rb'))
 
 # Define a dictionary to map the column names to the original names
 Unique_Values = np.load('unique_values.npy', allow_pickle=True)
@@ -27,12 +27,12 @@ bmi_group = Unique_Values[()]['bmi_group']
 avg_glucose_level_group = Unique_Values[()]['avg_glucose_level_group']
 
 #Load Label Encoders
-LE_Age_Group = pickle.load(open('./Saved Models/LabelEncoder_age_group.pkl', 'rb'))
-LE_Avg_Glucose_Level_Group = pickle.load(open('./Saved Models/LabelEncoder_avg_glucose_level_group.pkl', 'rb'))
-LE_Bmi_Group = pickle.load(open('./Saved Models/LabelEncoder_bmi_group.pkl', 'rb'))
-LE_Ever_Married = pickle.load(open('./Saved Models/LabelEncoder_ever_married.pkl', 'rb'))
-LE_Gender = pickle.load(open('./Saved Models/LabelEncoder_gender.pkl', 'rb'))
-LE_Residence_Type = pickle.load(open('./Saved Models/LabelEncoder_Residence_type.pkl', 'rb'))
+LE_Age_Group = pickle.load(open('LabelEncoder_age_group.pkl', 'rb'))
+LE_Avg_Glucose_Level_Group = pickle.load(open('LabelEncoder_avg_glucose_level_group.pkl', 'rb'))
+LE_Bmi_Group = pickle.load(open('LabelEncoder_bmi_group.pkl', 'rb'))
+LE_Ever_Married = pickle.load(open('LabelEncoder_ever_married.pkl', 'rb'))
+LE_Gender = pickle.load(open('LabelEncoder_gender.pkl', 'rb'))
+LE_Residence_Type = pickle.load(open('LabelEncoder_Residence_type.pkl', 'rb'))
 
 # Define a function to preprocess the input data
 def preprocess_input(data):
@@ -67,7 +67,7 @@ Age_group = st.selectbox('age_group', options=age_group)
 Bmi_group = st.selectbox('bmi_group', options=bmi_group)
 Avg_glucose_level_group = st.selectbox('avg_glucose_level_group', options=avg_glucose_level_group)
 
-#Dummies of WOrk Type
+#Dummies of Work Type
 if Work_type == 'Govt_job':
     work_type_Govt_job = 1
     work_type_Never_worked = 0
