@@ -1,4 +1,3 @@
-$ pip install openai
 openai==0.27.0  # Use the appropriate version
 streamlit
 pandas
