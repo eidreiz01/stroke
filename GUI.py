@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import openai
 
 #Load the Model and Scaler
 model = pickle.load(open('Best_Model_LogReg.pkl', 'rb'))
@@ -67,7 +68,7 @@ Age_group = st.selectbox('age_group', options=age_group)
 Bmi_group = st.selectbox('bmi_group', options=bmi_group)
 Avg_glucose_level_group = st.selectbox('avg_glucose_level_group', options=avg_glucose_level_group)
 
-#Dummies of Work Type
+#Dummies of WOrk Type
 if Work_type == 'Govt_job':
     work_type_Govt_job = 1
     work_type_Never_worked = 0
@@ -140,8 +141,26 @@ if pred_click:
     # Preprocess the input data
     df = preprocess_input(data)
 
-    # Make the prediction
-    prediction = model.predict_proba(data)[:, 1][0]
+    print(df)
 
-    # Display the prediction
+    # Make the prediction
+    prediction = model.predict_proba(df)[:, 1][0]
+
+    # Display the prediction using openai custom prompt
+    # Get your OpenAI API key.
+    api_key = "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"
+    openai.api_key = api_key
+    #Get response from OpenAI API
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=f"I have a patient who has a {prediction}% risk of stroke, using bulletpoints advise and give some basic recommendations to the patient.",
+        n=1,
+        max_tokens=500,
+    )
+
+    # Parse the response and extract the completion text.
+    completion = response.choices[0]
+
+    #Display the prediction
     st.write(f'The predicted probability of stroke is: {prediction:.2%}')
+    st.write(f'Some advice for the patient: {completion.text}')
