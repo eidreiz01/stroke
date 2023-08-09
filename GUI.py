@@ -3,7 +3,15 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-import openai
+#import openai
+
+try:
+    import openai
+except ImportError:
+    st.error("The 'openai' module is not installed. Please install it using 'pip install openai'.")
+
+# Rest of your Streamlit app code
+
 
 #Load the Model and Scaler
 model = pickle.load(open('Best_Model_LogReg.pkl', 'rb'))
