@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from langchain.llms import OpenAI
+import openai
 
 #Load the Model and Scaler
 model = pickle.load(open('Best_Model_LogReg.pkl', 'rb'))
