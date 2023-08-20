@@ -156,7 +156,7 @@ if pred_click:
 
     # Display the prediction using openai custom prompt
     # Get your OpenAI API key.
-    api_key = "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"
+    api_key = "sk-DMSLqyh0uU3vCBMzwljFT3BlbkFJc8pnhERvTEjaTYjom6"
     openai.api_key = api_key
     #Get response from OpenAI API
     response = openai.Completion.create(
